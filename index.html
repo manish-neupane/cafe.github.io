@@ -453,6 +453,18 @@
             z-index: 2;
         }
 
+        /* Move badges on mobile to not block content */
+        @media (max-width: 768px) {
+            .special-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                margin-bottom: 10px;
+                font-size: 0.7em;
+            }
+        }
+
         @keyframes wiggle {
             0%, 100% { transform: rotate(-3deg); }
             50% { transform: rotate(3deg); }
