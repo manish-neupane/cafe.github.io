@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Menu</title>
+    <title>Premium Cafe Menu</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,73 +14,196 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
             min-height: 100vh;
             padding: 20px;
             color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1e3c72, #2a5298, #667eea, #764ba2);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
         }
 
         .menu-container {
             max-width: 1200px;
             margin: 0 auto;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.8s ease-out;
         }
 
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header with 3D Effect */
         .menu-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             position: relative;
+            overflow: hidden;
         }
 
         .menu-header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>') repeat;
-            background-size: 30px 30px;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: slidePattern 20s linear infinite;
+        }
+
+        @keyframes slidePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
 
         .menu-header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-weight: 300;
-            letter-spacing: 3px;
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 5px;
             position: relative;
             z-index: 1;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                             0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                             0 0 30px rgba(255, 255, 255, 0.5),
+                             0 0 40px rgba(255, 255, 255, 0.3);
+            }
         }
 
         .menu-header .tagline {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-style: italic;
-            opacity: 0.9;
+            opacity: 0.95;
             position: relative;
             z-index: 1;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Decorative Icons */
+        .header-icons {
+            font-size: 3em;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .menu-content {
-            padding: 60px 40px;
+            padding: 80px 40px;
         }
 
         .menu-section {
-            margin-bottom: 60px;
+            margin-bottom: 80px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .section-title {
-            font-size: 2em;
-            color: #667eea;
-            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
             text-align: center;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .section-title::after {
@@ -87,28 +212,59 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
+            width: 100px;
+            height: 4px;
             background: linear-gradient(90deg, #667eea, #764ba2);
             border-radius: 2px;
+            animation: expand 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes expand {
+            from { width: 0; }
+            to { width: 100px; }
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
         }
 
+        /* Enhanced Menu Items with 3D Effect */
         .menu-item {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            padding: 30px;
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: cardEntry 0.6s ease-out backwards;
         }
+
+        @keyframes cardEntry {
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotateY(-20deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+            }
+        }
+
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .menu-item:nth-child(6) { animation-delay: 0.6s; }
+        .menu-item:nth-child(7) { animation-delay: 0.7s; }
+        .menu-item:nth-child(8) { animation-delay: 0.8s; }
 
         .menu-item::before {
             content: '';
@@ -117,7 +273,12 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(102, 126, 234, 0.2),
+                transparent
+            );
             transition: left 0.5s ease;
         }
 
@@ -126,75 +287,226 @@
         }
 
         .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 25px 50px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .menu-item:hover::after {
+            transform: scaleX(1);
         }
 
         .item-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .item-name {
-            font-size: 1.3em;
+            font-size: 1.4em;
             color: #2c3e50;
             font-weight: 600;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        .menu-item:hover .item-name {
+            color: #667eea;
         }
 
         .item-price {
-            font-size: 1.4em;
+            font-size: 1.6em;
             color: #667eea;
             font-weight: bold;
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .price-options {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .price-label {
-            font-size: 0.85em;
+            font-size: 0.9em;
             color: #6c757d;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 10px 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover .price-label {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
         }
 
         .price-value {
-            font-size: 1.3em;
+            font-size: 1.4em;
             color: #667eea;
             font-weight: bold;
-            margin-top: 3px;
+            margin-top: 5px;
         }
 
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
-            margin: 50px 0;
-        }
-
-        /* Beverage Icons */
+        /* Special Beverage Items */
         .beverage-item {
             position: relative;
-            padding-left: 50px;
+            padding-left: 70px;
         }
 
         .beverage-icon {
             position: absolute;
-            left: 15px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.8em;
+            font-size: 2.5em;
+            animation: rotate3d 3s ease-in-out infinite;
+        }
+
+        @keyframes rotate3d {
+            0%, 100% { transform: translateY(-50%) rotateY(0deg); }
+            50% { transform: translateY(-50%) rotateY(180deg); }
+        }
+
+        .menu-item:hover .beverage-icon {
+            animation: bounce 0.6s ease;
+        }
+
+        /* Divider with Animation */
+        .divider {
+            height: 3px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #667eea,
+                #764ba2,
+                transparent
+            );
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.8),
+                transparent
+            );
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Special Badges */
+        .special-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            font-size: 0.75em;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: wiggle 1s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        /* Footer with Animation */
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            font-size: 1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            animation: footerShine 3s ease-in-out infinite;
+        }
+
+        @keyframes footerShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .menu-header h1 {
-                font-size: 2em;
+                font-size: 2.5em;
+                letter-spacing: 3px;
             }
 
             .menu-header .tagline {
@@ -202,24 +514,24 @@
             }
 
             .menu-content {
-                padding: 40px 20px;
+                padding: 50px 20px;
             }
 
             .section-title {
-                font-size: 1.6em;
+                font-size: 2em;
             }
 
             .menu-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
 
             .item-name {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
 
             .item-price, .price-value {
-                font-size: 1.2em;
+                font-size: 1.3em;
             }
         }
 
@@ -229,61 +541,88 @@
             }
 
             .menu-header {
-                padding: 40px 15px;
+                padding: 50px 15px;
             }
 
             .menu-header h1 {
-                font-size: 1.6em;
+                font-size: 2em;
                 letter-spacing: 2px;
             }
 
             .menu-content {
-                padding: 30px 15px;
+                padding: 40px 15px;
             }
 
             .menu-item {
-                padding: 20px;
+                padding: 25px;
             }
 
-            .price-options {
-                flex-direction: column;
-                gap: 10px;
-                align-items: flex-end;
+            .beverage-item {
+                padding-left: 60px;
+            }
+
+            .beverage-icon {
+                font-size: 2em;
+                left: 15px;
             }
         }
 
-        /* Special highlight for premium items */
-        .premium-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            font-size: 0.7em;
-            padding: 3px 10px;
-            border-radius: 15px;
-            margin-left: 10px;
-            vertical-align: middle;
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 0.5s ease-out 1.5s forwards;
         }
 
-        .footer {
-            background: #f8f9fa;
-            padding: 30px;
-            text-align: center;
-            color: #6c757d;
-            font-size: 0.9em;
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
     <div class="menu-container">
         <div class="menu-header">
             <h1>OUR MENU</h1>
             <p class="tagline">Authentic Flavors, Premium Quality</p>
+            <div class="header-icons">🍜 ☕ 🥘</div>
         </div>
 
         <div class="menu-content">
             <!-- FOOD SECTION -->
-            <div class="menu-section">
-                <h2 class="section-title">🍜 FOOD</h2>
+            <div class="menu-section reveal">
+                <h2 class="section-title">🍜 DELICIOUS FOOD</h2>
                 
                 <div class="menu-grid">
                     <!-- Chowmein -->
@@ -304,6 +643,7 @@
                     </div>
 
                     <div class="menu-item">
+                        <span class="special-badge">Popular</span>
                         <div class="item-header">
                             <span class="item-name">Egg Chowmein</span>
                         </div>
@@ -320,6 +660,7 @@
                     </div>
 
                     <div class="menu-item">
+                        <span class="special-badge">Chef's Choice</span>
                         <div class="item-header">
                             <span class="item-name">Chicken Chowmein</span>
                         </div>
@@ -352,6 +693,7 @@
 
                     <!-- Momo -->
                     <div class="menu-item">
+                        <span class="special-badge">Hot</span>
                         <div class="item-header">
                             <span class="item-name">Chicken Momo</span>
                             <span class="item-price">₹130</span>
@@ -378,8 +720,8 @@
             <div class="divider"></div>
 
             <!-- BEVERAGES SECTION -->
-            <div class="menu-section">
-                <h2 class="section-title">☕ BEVERAGES</h2>
+            <div class="menu-section reveal">
+                <h2 class="section-title">☕ REFRESHING BEVERAGES</h2>
                 
                 <div class="menu-grid">
                     <!-- Tea -->
@@ -401,6 +743,7 @@
 
                     <div class="menu-item beverage-item">
                         <span class="beverage-icon">☕</span>
+                        <span class="special-badge">Popular</span>
                         <div class="item-header">
                             <span class="item-name">Milk Tea</span>
                             <span class="item-price">₹25</span>
@@ -416,7 +759,7 @@
                     </div>
 
                     <div class="menu-item beverage-item">
-                        <span class="beverage-icon">🍋</span>
+                        <span class="beverage-icon">🔥</span>
                         <div class="item-header">
                             <span class="item-name">Hot Lemon</span>
                             <span class="item-price">₹30</span>
@@ -433,7 +776,7 @@
                     </div>
 
                     <div class="menu-item beverage-item">
-                        <span class="beverage-icon">🥤</span>
+                        <span class="beverage-icon">🍊</span>
                         <div class="item-header">
                             <span class="item-name">Fanta</span>
                             <span class="item-price">₹70</span>
@@ -441,7 +784,7 @@
                     </div>
 
                     <div class="menu-item beverage-item">
-                        <span class="beverage-icon">🥤</span>
+                        <span class="beverage-icon">⚡</span>
                         <div class="item-header">
                             <span class="item-name">Mountain Dew</span>
                             <span class="item-price">₹70</span>
@@ -453,7 +796,7 @@
             <div class="divider"></div>
 
             <!-- CIGARETTES SECTION -->
-            <div class="menu-section">
+            <div class="menu-section reveal">
                 <h2 class="section-title">🚬 CIGARETTES</h2>
                 
                 <div class="menu-grid">
@@ -475,8 +818,94 @@
         </div>
 
         <div class="footer">
-            <p>All prices are in Indian Rupees (₹) | Prices subject to change</p>
+            <p>✨ All prices are in Indian Rupees (₹) | Prices subject to change ✨</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Thank you for choosing us! 🙏</p>
         </div>
     </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c'];
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = Math.random() * 10 + 15 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Add ripple effect on click
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(102, 126, 234, 0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createParticles();
+            reveal();
+        });
+
+        window.addEventListener('scroll', reveal);
+
+        // Add parallax effect to header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('.menu-header');
+            header.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
 </body>
 </html>
